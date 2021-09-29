@@ -1,9 +1,27 @@
 @import "styles/variables";
+@import "styles/breakpoints";
 
 .summary {
-  position: sticky;
-  width: calc(100% - 378px - 96px);
-  margin-left: 96px;
+ 
+  @include breakpoint-down("md") {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 16px 32px;
+    justify-content: space-between;
+    box-shadow: 1px 4px rgba(163, 171, 204, 0.06), 0px 8px 30px rgba(20, 43, 127, 0.1);
+    button {
+      width: 60%
+    }
+  }
+  @include breakpoint-up("md") {
+    width: calc(100% - 378px - 96px);
+    margin-left: 96px;  
+  }
 
   &__amount {
     color: $gray1;
@@ -23,6 +41,10 @@
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
+    @include breakpoint-down("md") {
+      color: $gray1;
+      font-weight: 700;
+    }
   }
   &__divider {
     width: 100%;
