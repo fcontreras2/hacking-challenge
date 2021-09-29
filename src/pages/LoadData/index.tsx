@@ -2,39 +2,18 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "shared/Header";
 import InputAccount from "./InputAccount";
+import Summary from "./Summary";
+import SideBar from "./SideBar";
 import "./styles.scss";
-
-type Menu = {
-  label: string;
-  link: string;
-};
-
-const MENU: Menu[] = [
-  {
-    label: "Datos",
-    link: "",
-  },
-  {
-    label: "Arma tu plan",
-    link: "/carga-informacion",
-  },
-];
 
 const LoadData = () => (
   <Fragment>
     <Header variant="white" />
     <div className="wrapper-content">
       <div className="container">
-        <div className="sidebar">
-          {MENU.map((e, i) => (
-            <div className="sidebar__menu">
-              <span className="mr-2">{i + 1}</span>
-              <Link to={e.link}>{e.label}</Link>
-            </div>
-          ))}
-        </div>
+        <SideBar />
         <div className="content">
-          <Link className="content__back" to={MENU[0].link}>
+          <Link className="button-back d-desktop" to={'/'}>
             <button>
               {" "}
               <img src="/images/arrow.svg" alt="Fecha" />
@@ -44,7 +23,11 @@ const LoadData = () => (
           <div className="main mt-3">
             <div className="info">
               <div className="info__title mb-5">
-                <h6 className="mb-1">
+                <h6 className="mb-1 d-mobile">
+                Mira las coberturas
+                </h6>
+
+                <h6 className="mb-1 d-desktop">
                   ¡Hola, <span>Juan!</span>
                 </h6>
                 <p>Conoce las coberturas para tu plan</p>
@@ -55,9 +38,7 @@ const LoadData = () => (
               </div>
               <InputAccount />
             </div>
-            <div className="summary">
-              <p>Resumen</p>
-            </div>
+            <Summary />
           </div>
         
         </div>
