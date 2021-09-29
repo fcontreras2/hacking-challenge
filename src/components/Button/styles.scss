@@ -1,0 +1,21 @@
+@import "styles/variables";
+
+.button {
+  border-radius: 8px;
+  height: 56px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: $font-regular;
+  &.--primary {
+    background-color: $red;
+    border: 2px solid $red;
+    outline: none;
+    color: white;
+    &:hover {
+      border: 2px solid $red;
+      background-color: #dc1d2a;
+    }
+  }
+}

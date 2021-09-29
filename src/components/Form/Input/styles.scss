@@ -1,0 +1,84 @@
+@import "styles/variables";
+
+.form {
+  &__group {
+    position: relative;
+    height: 56px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #c5cbe0;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    justify-content: center;
+
+    &:focus-within {
+      border-color: $acian2;
+      .form__label {
+        color: $acian2;
+      }
+    }
+
+    &.--select {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0;
+    }
+
+    &.--error {
+      border-color: $red;
+    }
+  }
+
+  &__group-left {
+    border-right: 1px solid #c5cbe0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  &__group-center {
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__input {
+    font-size: 16px;
+    color: $gray1;
+    outline: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+
+    &.--primary {
+    }
+
+    &.--has-content ~ label {
+      position: relative;
+      font-size: 12px;
+    }
+
+    &.--error {
+    }
+  }
+
+  &__label {
+    font-size: 13px;
+    z-index: 0;
+    color: $gray3;
+    transition: 0.2s linear;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -20px;
+    font-size: 13px;
+    left: 0;
+    color: $red;
+  }
+}

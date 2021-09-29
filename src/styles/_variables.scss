@@ -1,3 +1,21 @@
 // Fonts
 $font-regular: 'Lato-Regular', sans-serif;
 $font-bold: 'Lato-Bold', sans-serif;
+
+// Colors
+
+$acian2: #6F7DFF; 
+$gray1: #494F66;
+$gray2: #676F8F;
+$gray3: #A3ABCC;
+
+$red: #EF3340; 
+
+// Breakpoints
+$breakpoints: (
+  sx: 0px,
+  sm: 768px,
+  md: 1120px,
+  lg: 1600px
+);
+
