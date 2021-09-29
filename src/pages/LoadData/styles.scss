@@ -69,4 +69,92 @@ $padding-top: 52px;
   min-height: 100vh;
   padding-top: $padding-top;
   padding: $padding-top 96px;
+
+  &__back {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: $gray3;
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid $red;
+      border-radius: 100%;
+      background-color: white;
+      width: 24px;
+      height: 24px;
+      margin-right: 16px;
+    }
+    img {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.main {
+  display: flex;
+  width: 100%;
+}
+
+.info {
+  width: 378px;
+  &__title {
+    h6 {
+      font-size: 40px; 
+      color: $gray1;
+      font-weight: 400;
+      font-family: $font-regular;
+      line-height: 48px;
+    }
+    span {
+      color: $red;
+    }
+    p {
+      color: $gray2;
+      font-size: 16px;
+    }
+  }
+
+  &__card { 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 32px;
+    border: 3px solid #F0F2FA;
+    width: 100%;
+    height: 172px;
+    border-radius: 12px;
+    
+    span {
+      font-size: 12px;
+      color: $gray3;
+    }
+
+    h6 {
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 400;
+      padding-right: 44%;
+      color: $gray1;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      right: 0;
+      width: 108px;
+      height: 179px;
+      background-image: url('/images/people.svg');
+      right: 20px;
+      top: -12px;
+    }
+  }
+}
+
+.summary {
+  width: calc(100% - 378px - 96px);
+  margin-left: 96px;
 }
