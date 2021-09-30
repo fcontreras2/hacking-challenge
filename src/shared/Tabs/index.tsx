@@ -15,7 +15,10 @@ const Option = ({ title, description, icon }: TabOption) => {
     <div className="tab-option">
       <img src={icon} className="tab-option__icon" alt={`Icon ${title}`} />
       <div className="tab-option__main">
-        <span className="tab-option__title" onClick={() => setOpen(!open)}>
+        <span
+          className="tab-option__title d-desktop"
+          onClick={() => setOpen(!open)}
+        >
           {title}
           <img
             src="/images/arrow.svg"
@@ -23,7 +26,9 @@ const Option = ({ title, description, icon }: TabOption) => {
             alt="Flecha"
           />
         </span>
-        <div className="tab-option__add">
+
+        <span className="tab-option__title d-mobile">{title}</span>
+        <div className="tab-option__add d-desktop">
           <button className="button-icon">
             <img src="/images/icon-plus.svg" alt="Icon"></img>
           </button>
@@ -32,6 +37,13 @@ const Option = ({ title, description, icon }: TabOption) => {
         <div className={`tab-option__content ${open ? "--open" : ""}`}>
           <p>{description}</p>
         </div>
+        <button
+          className={`tab-option__more d-mobile ${open ? "--open" : ""}`}
+          onClick={() => setOpen(!open)}
+        >
+          <span>{open ? "VER MENOS" : "VER MÁS"}</span>
+          <img src={`/images/icon-arrow-${open ? 'gray': 'acian'}.svg`} alt="Acian" />
+        </button>
       </div>
     </div>
   );
