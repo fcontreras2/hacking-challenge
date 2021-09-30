@@ -12,7 +12,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, Props>(
 );
 
 FormInput.defaultProps = {
-  className: "form__input --primary",
+  className: "form__input --primary", 
 };
 
 export const FormLabel = ({ children, ...props }: any) => (
