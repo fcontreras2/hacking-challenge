@@ -15,10 +15,10 @@ import * as yup from "yup";
 import "./styles.scss";
 import Select from "components/Form/Select";
 import { FormCheckbox } from "components/Form/Checkbox";
+import { useHistory } from "react-router";
 
 const schema = yup
   .object({
-    type: yup.number().required("Campo requerido"),
     document: yup.string().required("Campo requerido"),
     cellphone: yup.string().required("Campo requerido"),
     plate: yup.string().required("Campo requerido"),
@@ -31,6 +31,7 @@ const DOCUMENTS = [
 ];
 
 const Home = () => {
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -40,7 +41,10 @@ const Home = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => console.log(data);
+
+  const onSubmit = (data: any) => {
+    history.push('/carga-informacion')
+  };
 
   return (
     <Fragment>
@@ -140,7 +144,7 @@ const Home = () => {
               </p>
             </div>
 
-            <Button>COTÍZALO</Button>
+            <Button type="submit">COTÍZALO</Button>
           </form>
         </div>
       </div>
