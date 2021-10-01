@@ -8,6 +8,7 @@
      width: 100vw;
      margin-left: -32px;
      padding-top: 0;
+     padding-bottom: 140px;
   }
 
   &__title {
@@ -91,6 +92,12 @@
 
     @include breakpoint-down('md') {
       font-size: 16px;
+      span {
+        &:first-child {
+          width: 68%;
+
+        } 
+      }
     }
     img {
       position: absolute;

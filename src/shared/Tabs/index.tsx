@@ -1,3 +1,4 @@
+import Switch from "components/Switch";
 import { useState } from "react";
 import { Tab, TabOption } from "types/tabs";
 import "./styles.scss";
@@ -27,7 +28,10 @@ const Option = ({ title, description, icon }: TabOption) => {
           />
         </span>
 
-        <span className="tab-option__title d-mobile">{title}</span>
+        <div className="tab-option__title d-mobile">
+          <span>{title}</span>
+          <Switch />
+        </div>
         <div className="tab-option__add d-desktop">
           <button className="button-icon">
             <img src="/images/icon-plus.svg" alt="Icon"></img>
@@ -42,7 +46,10 @@ const Option = ({ title, description, icon }: TabOption) => {
           onClick={() => setOpen(!open)}
         >
           <span>{open ? "VER MENOS" : "VER MÁS"}</span>
-          <img src={`/images/icon-arrow-${open ? 'gray': 'acian'}.svg`} alt="Acian" />
+          <img
+            src={`/images/icon-arrow-${open ? "gray" : "acian"}.svg`}
+            alt="Acian"
+          />
         </button>
       </div>
     </div>
