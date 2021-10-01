@@ -2,7 +2,22 @@
 @import "styles/breakpoints";
 
 .summary {
- 
+
+  .sticky {
+    position: sticky;
+    top: 100px;
+    @include breakpoint-down("md") {
+      position: relative;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  @include breakpoint-up("md") {
+    padding-top: 80px
+  }
   @include breakpoint-down("md") {
     position: fixed;
     z-index: 10;

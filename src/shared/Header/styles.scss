@@ -3,6 +3,10 @@
 
 .wrapper-white {
   border-bottom: 1px solid $bg;
+  position: fixed;
+  width: 100vw;
+  background: white;
+  z-index: 10;
 }
 
 

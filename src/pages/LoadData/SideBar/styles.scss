@@ -1,5 +1,6 @@
 @import "styles/variables";
 @import "styles/breakpoints";
+
 .sidebar {
 
   @include breakpoint-up("md") {

@@ -17,7 +17,7 @@
 .banner-welcome {
   @include breakpoint-up("md") {
     position: relative;
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh);
     width: $sidebar-w;
     padding-top: $padding-top;
     &::before {
@@ -27,7 +27,7 @@
       background-position: -32px 20%;
       background-size: contain;
       position: absolute;
-      top: 96px;
+      top: calc(96px + #{$padding-top}) ;
       right: -128px;
       width: 416px;
       height: 448px;
@@ -53,7 +53,7 @@
 }
 
 .content-welcome {
-  padding-top: 46px;
+  padding-top: $padding-top;
   @include breakpoint-down("md") {
     padding-bottom: 56px;
   }
@@ -61,9 +61,9 @@
   @include breakpoint-up("md") {
     background-color: white;
     height: 100%;
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh);
     padding: $padding-top 224px;
-    padding-top: 96px;
+    padding-top: calc(96px + #{$padding-top}) ;
     padding-right: 20px;
   }
   h5 {
