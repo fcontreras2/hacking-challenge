@@ -1,0 +1,75 @@
+ @import "styles/variables";
+ @import "styles/breakpoints";
+
+ .wrapper-content {
+  @include breakpoint-up("md") {
+    background: linear-gradient(90deg, #f7f8fc 49%, rgba(255, 255, 255, 1) 50%);
+  }
+
+  @include breakpoint-down("md") {
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+
+.banner-welcome {
+  @include breakpoint-up("md") {
+    position: relative;
+    min-height: calc(100vh - 65px);
+    width: $sidebar-w;
+    padding-top: $padding-top;
+    &::before {
+      content: '';
+      background-image: url("/images/welcome-bg.svg");
+      background-repeat: no-repeat;
+      background-position: -32px 20%;
+      background-size: contain;
+      position: absolute;
+      top: 96px;
+      right: -128px;
+      width: 416px;
+      height: 448px;
+      z-index: 10; 
+    }
+  }
+}
+
+.content-welcome{
+  padding-top: 96px;
+  @include breakpoint-up("md") {
+    background-color: white;
+    height: 100%;
+    min-height: calc(100vh - 65px);;
+    padding: $padding-top 224px;
+    padding-top: 96px;
+    padding-right: 20px;
+  }
+  h5 {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 400;
+    color: $gray1;
+    padding-right: 80px;
+
+    span {
+      color: $red;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 28px;
+    color: $gray2;
+    padding-right: 130px;
+    span {
+     color: $gray1; 
+    }
+  }
+
+  button {
+    width: 255px;
+  }
+}

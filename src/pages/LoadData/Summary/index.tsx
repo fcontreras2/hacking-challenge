@@ -1,7 +1,10 @@
 import Button from "components/Button";
+import { useHistory } from "react-router";
 import "./styles.scss";
 
 export const Summary = () => {
+  const history = useHistory();
+  
   return (
     <div className="summary">
       <div className="summary__result d-mobile">
@@ -19,7 +22,7 @@ export const Summary = () => {
         <li className="mb-1"><img className="mr-2" src="/images/icon-check.svg" alt="Icono check" />Análisis de motor</li>
         <li className="mb-1"><img className="mr-2" src="/images/icon-check.svg" alt="Icono check" />Aros gratis</li>
       </ul>
-      <Button className="button --primary summary__button">LO QUIERO</Button>
+      <Button className="button --primary summary__button" onClick={() => {history.push('/bienvenido')}}>LO QUIERO</Button>
     </div>
   );
 };
