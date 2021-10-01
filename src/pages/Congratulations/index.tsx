@@ -24,6 +24,9 @@ const Congratulations = () => {
             </p>
             <Button>CÓMO USAR MI SEGURO</Button>
           </div>
+          <div className="copyright-welcome d-mobile">
+            <p>© 2021 RIMAC Seguros y Reaseguros.</p>
+          </div>
         </div>
       </div>
     </Fragment>
