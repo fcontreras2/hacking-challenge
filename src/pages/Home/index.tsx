@@ -1,5 +1,5 @@
 import { useHistory } from "react-router";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,17 +23,32 @@ import "./styles.scss";
 const schema = yup
   .object({
     documentType: yup.number().required("Campo requerido"),
-    document: yup.string().required("Campo requerido"),
-    cellphone: yup.string().required("Campo requerido"),
-    plate: yup.string().required("Campo requerido"),
-    terms: yup.bool().oneOf([true], "Aceptar los términos y condiciones")
+    document: yup
+      .string()
+      .when("documentType", {
+        is: "0",
+        then: yup.string().length(8, "Debe contener 8 dígitos"),
+        otherwise: yup
+          .string()
+          .min(8, "Debe contener mínimo 8 dígitos")
+          .max(12, "debe contener máximo 12 dígitos"),
+      })
+      .required("Campo requerido"),
+    cellphone: yup
+      .string()
+      .length(9, "Debe ingresar 9 dígitos")
+      .matches(/[9]([0-9]{0,8})/, "Formato incorrecto")
+      .required("Campo requerido"),
+    plate: yup
+      .string()
+      .matches(
+        /(?:([a-zA-Z]|[0-9])){3}-(?:([a-zA-Z]|[0-9])){3}/,
+        "Formato incorrecto de placa"
+      )
+      .required("Campo requerido"),
+    terms: yup.bool().oneOf([true], "Aceptar los términos y condiciones"),
   })
   .required();
-
-const DOCUMENTS = [
-  { value: DocumentType.DNI, label: "DNI" },
-  { value: DocumentType.CE, label: "CE" },
-];
 
 const Home = () => {
   const history = useHistory();
@@ -44,6 +59,8 @@ const Home = () => {
     register,
     handleSubmit,
     watch,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -52,11 +69,15 @@ const Home = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async ({
-    documentType,
-    document,
-    plate,
-  }: any) => {
+  const DOCUMENTS = useMemo(
+    () => [
+      { value: DocumentType.DNI, label: "DNI", maxLength: 8 },
+      { value: DocumentType.CE, label: "CE", maxLength: 12 },
+    ],
+    []
+  );
+
+  const onSubmit = async ({ documentType, document, plate }: any) => {
     if (!loading) {
       setNotFound(false);
       const response = await fetch<Car[]>({
@@ -69,7 +90,7 @@ const Home = () => {
         },
       });
 
-      if (response.data.length > 0) {
+      if (response.status && response.data?.length > 0) {
         setCar(response.data[0]);
         history.push("/carga-informacion");
       } else {
@@ -77,6 +98,55 @@ const Home = () => {
       }
     }
   };
+
+  const onKeyPress = useCallback(($event: any) => {
+    const { target, key } = $event;
+    const { value, name } = target;
+
+    switch (name) {
+      case "plate":
+        if ((String(value) + key).length === 3) {
+          setTimeout(() => {
+            setValue("plate", String(value) + key + "-");
+          }, 0);
+        } else if (
+          (String(value) + key).length > 7 ||
+          !/[0-9A-Z]/.test(String(key).toUpperCase())
+        ) {
+          $event.preventDefault();
+        }
+        break;
+      case "cellphone":
+        if (
+          !/[9]([0-9]{0,8})/.test(String(value) + key) ||
+          (String(value) + key).length > 9
+        ) {
+          $event.preventDefault();
+        }
+        break;
+      case "document":
+        if ((String(value) + key).length > DOCUMENTS[getValues("documentType")].maxLength) {
+          $event.preventDefault();
+        }
+    }
+  }, [DOCUMENTS, getValues, setValue]);
+
+  const onBlur = useCallback(
+    ($event: any) => {
+      const { value } = $event.target;
+      setValue("plate", value.toUpperCase());
+    },
+    [setValue]
+  );
+
+  const onChangeDocumentType = useCallback(
+    (value: number) => {
+      setValue("documentType", value);
+      setValue("document", "");
+    },
+    [setValue]
+  );
+
 
   return (
     <Fragment>
@@ -109,7 +179,9 @@ const Home = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <h6 className="form-home__title mb-3">Déjanos tus datos</h6>
             {notFound && (
-              <div className="home-errors">¡Tu vehículo no fue encontrado, volver intentar!</div>
+              <div className="home-errors">
+                ¡Tu vehículo no fue encontrado, volver intentar!
+              </div>
             )}
 
             <FormGroup
@@ -122,7 +194,7 @@ const Home = () => {
                   id="document"
                   options={DOCUMENTS}
                   value={0}
-                  onChange={() => {}}
+                  onChange={onChangeDocumentType}
                 />
               </div>
 
@@ -130,7 +202,9 @@ const Home = () => {
                 {watch("document") && <FormLabel>Nro. de doc</FormLabel>}
                 <FormInput
                   placeholder="Nro. de doc"
-                  {...register("document")}
+                  type="number"
+                  onKeyPress={onKeyPress}
+                  {...register("document", { minLength: 8, maxLength: 8 })}
                 />
               </div>
 
@@ -140,45 +214,63 @@ const Home = () => {
             </FormGroup>
 
             <FormGroup
-              className={`form__group mb-3 ${errors.document && "--error"}`}
+              className={`form__group mb-3 ${errors.cellphone && "--error"}`}
             >
               {watch("cellphone") && <FormLabel>Celular</FormLabel>}
-              <FormInput placeholder="Celular" {...register("cellphone")} />
+              <FormInput
+                type="number"
+                placeholder="Celular"
+                onKeyPress={onKeyPress}
+                {...register("cellphone")}
+              />
               {errors.cellphone && (
                 <FormError>{errors.cellphone?.message}</FormError>
               )}
             </FormGroup>
 
             <FormGroup
-              className={`form__group  mb-4 ${errors.document && "--error"}`}
+              className={`form__group  mb-4 ${errors.plate && "--error"}`}
             >
               {watch("plate") && <FormLabel>Placa</FormLabel>}
-              <FormInput placeholder="Placa" {...register("plate")} />
+              <FormInput
+                onKeyPress={onKeyPress}
+                onBlurCapture={onBlur}
+                placeholder="Placa"
+                maxLength={7}
+                {...register("plate")}
+              />
               {errors.plate && <FormError>{errors.plate?.message}</FormError>}
             </FormGroup>
 
             <div className="terms mb-3">
-              <FormCheckbox {...register("terms")} className="form__checkbox mr-1" />
+              <FormCheckbox
+                {...register("terms")}
+                className="form__checkbox mr-1"
+              />
               <div>
-              <p>
-                Acepto la{" "}
-                <a
-                  href="https://www.rimac.com.pe/uploads/Politica_Proteccion_de_Datos_Personales_POL_2437.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Política de Protección de Datos Personales{" "}
-                </a>{" "}
-                y los
-                <a
-                  href="https://www.rimac.com.pe/uploads/Condiciones_generales_de_contrataci%C3%B3n.pdf?_ga=2.21655483.1001281860.1620774611-1895881966.1620658317"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Términos y Condiciones.
-                </a>
-              </p>
-              {errors.terms && <div className="home-errors mt-1">{errors.terms?.message}</div>}
+                <p>
+                  Acepto la{" "}
+                  <a
+                    href="https://www.rimac.com.pe/uploads/Politica_Proteccion_de_Datos_Personales_POL_2437.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Política de Protección de Datos Personales{" "}
+                  </a>{" "}
+                  y los
+                  <a
+                    href="https://www.rimac.com.pe/uploads/Condiciones_generales_de_contrataci%C3%B3n.pdf?_ga=2.21655483.1001281860.1620774611-1895881966.1620658317"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Términos y Condiciones.
+                  </a>
+                </p>
+                {errors.terms && (
+                  <div className="home-errors mt-1">
+                    {errors.terms?.message}
+                  </div>
+                )}
               </div>
             </div>
 

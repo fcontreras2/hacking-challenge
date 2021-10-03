@@ -137,7 +137,7 @@
     width: 60%;
     align-self: flex-start;
     margin-top: 0;
-    padding: 70px 10%;
+    padding: 70px 104px 70px 15%;
   }
 
   &__title {
@@ -146,6 +146,20 @@
     line-height: 36px;
     font-size: 28px;
     font-weight: 400;
+  }
+
+  .form__group {
+    max-width: 100%;
+    @include breakpoint-up('md') {
+      max-width: 288px;
+    }
+  }
+
+  .button {
+    max-width: 100%;
+    @include breakpoint-up('md') {
+      max-width: 192px;
+    }
   }
 }
 
@@ -156,6 +170,7 @@
     color: $gray2;
     font-size: 12px;
     line-height: 20px;
+    padding-right: 30%;
   }
 
   a {

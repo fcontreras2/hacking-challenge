@@ -2,13 +2,33 @@
   "cars": [
     {
       "documentType": "0",
-      "document": "123456789",
+      "document": "12345678",
       "plate": "ABC-123",
       "brand": "Wolkswagen",
       "year": "2019",
       "model": "Golf",
       "name": "Juan",
       "email": "juan@example.com"
+    },
+    {
+      "documentType": "0",
+      "document": "87654321",
+      "plate": "ABC-456",
+      "brand": "Mazda",
+      "year": "2020",
+      "model": "cx3",
+      "name": "José",
+      "email": "jose@example.com"
+    },
+    {
+      "documentType": "1",
+      "document": "12345678",
+      "plate": "123-ABC",
+      "brand": "Ford",
+      "year": "2010",
+      "model": "Mustang",
+      "name": "María",
+      "email": "maria@example.com"
     }
   ],
   "coverage": [

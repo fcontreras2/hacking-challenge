@@ -39,12 +39,15 @@ const useFetch = (
         ...config,
         url,
       });
-      setTimeout(() => {
-        setLoading(false);
-      }, 100);
 
-      return response;
+      return new Promise((resolve) => setTimeout(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 0);
+        return resolve(response);
+      }, 2500))
     } catch (error: any) {
+      setLoading(false);
       return error;
     }
   };

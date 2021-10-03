@@ -3,11 +3,12 @@ import React, {
 } from "react";
 import "./styles.scss";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+}
 
 export const FormInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ ...props }: Props, ref) => {
-    return <input ref={ref} {...props} />;
+  ({ onChange, ...props }: Props, ref) => {
+    return <input ref={ref} onChange={onChange} {...props} />;
   }
 );
 

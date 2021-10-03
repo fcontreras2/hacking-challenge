@@ -17,20 +17,13 @@ const Select = (props: Props) => {
   const [currentSelected, setCurrentSelected] = useState<Option>();
   const [open, setOpen] = useState<boolean>(false);
 
-  const clickOpen = () => {
-    setOpen(true);
-  };
-
-  const checkClickOption = useCallback(
-    (e) => {
-      if (e.target.className === `form__option`) {
-        setOpen(!open);
-      } else {
-        setOpen(false);
-      }
-    },
-    [open]
-  );
+  const checkClickOption = useCallback((e) => {
+    if (e.target.className === `form__option`) {
+      setOpen(!open);
+    } else {
+      setOpen(false);
+    }
+  }, [open]);
 
   useEffect(() => {
     if (open) {
@@ -51,17 +44,31 @@ const Select = (props: Props) => {
 
   return (
     <div className="form__select">
-      <button id={props.id} className="form__button-main"  type="button" onClick={clickOpen}>
+      <button
+        id={props.id}
+        className="form__button-main"
+        type="button"
+        onClick={() => {
+          setOpen(true);
+        }}
+      >
         <span className="form__value">{currentSelected?.label}</span>
-        <img src="/images/arrow.svg" alt="Fecha" className={`arrow ${open ? '--open' : ''}` }></img>
+        <img
+          src="/images/arrow.svg"
+          alt="Fecha"
+          className={`arrow ${open ? "--open" : ""}`}
+        ></img>
       </button>
       {open && (
         <div className="form__options">
           {props.options.map((e) => (
             <button
               className="form__option"
-              key={String(e  + '-key')}
+              key={String(e.value + "-key")}
               onClick={() => {
+                if (e.value !== currentSelected?.value) {
+                  props.onChange(Number(e.value));
+                }
                 setCurrentSelected(e);
               }}
             >
