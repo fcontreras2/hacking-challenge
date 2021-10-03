@@ -1,0 +1,21 @@
+@import "variables";
+
+@mixin breakpoint-up($name) {
+  @each $label, $size in $breakpoints {
+    @if $name == $label {
+      @media (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin breakpoint-down($name) {
+  @each $label, $size in $breakpoints {
+    @if $name == $label {
+      @media (max-width: $size - 1) {
+        @content;
+      }
+    }
+  }
+}

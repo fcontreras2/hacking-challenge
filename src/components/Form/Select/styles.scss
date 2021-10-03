@@ -1,0 +1,62 @@
+@import 'styles/variables';
+
+.form {
+  &__select {
+    position: relative;
+    min-width: 40px;
+
+    button {
+      font-size: 16px;
+      background: none;
+      border: none;
+      color: $gray1;
+      min-width: 70px;
+      cursor: pointer;
+    } 
+
+    .arrow {
+      transition: 0.2s linear;
+      &.--open {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__button-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__value {
+    padding-right: 8px;
+  }
+
+  &__options {
+
+    box-shadow: 1px 1px 14px 3px rgba(0,0,0,0.25);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 42px;
+    background-color: white;
+    border: 1px solid #c5cbe0;
+    left: 0;
+    z-index: 1;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    left: -8px;
+    width: calc(100% + 16px);
+  }
+
+  &__option {
+    height: 40px;
+    padding: 0 16px;
+    cursor: pointer;
+    text-align: left;
+    &:hover {
+      background: #ecf0ff;
+    }
+  }
+}

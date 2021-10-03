@@ -1,0 +1,46 @@
+@import "styles/variables";
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  border-radius: 8px;
+  height: 56px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: $font-regular;
+  &.--primary {
+    background-color: $red;
+    border: 2px solid $red;
+    outline: none;
+    color: white;
+    
+    .loader:after {
+      background: $red;
+    }
+
+    &:hover {
+      border: 2px solid $red;
+      background-color: #dc1d2a;
+      .loader:after {
+        background: #dc1d2a;
+      }
+    }
+   
+  }
+}
+
+.button-icon {
+  border: 1px solid;
+  border-radius: 100%; 
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  cursor: pointer;
+}

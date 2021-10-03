@@ -1,0 +1,88 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.sidebar {
+
+  @include breakpoint-up("md") {
+    min-height: 100vh;
+    width: $sidebar-w;
+    padding-top: $padding-top;
+  }
+
+  @include breakpoint-down("md") {
+    display: flex;
+    align-items: center;
+    height: 48px;
+  }
+
+  .d-mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__menu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 44px;
+    &::before {
+      content: "";
+      height: 44px;
+      position: absolute;
+      bottom: -44px;
+      width: 1px;
+      left: 11.5px;
+      border-left: 1px solid #c5cbe0;
+      border-left-style: dashed;
+      border-left-width: thin;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      width: 24px;
+      border: 1px solid #c5cbe0;
+      border-radius: 100%;
+      font-size: 12px;
+      color: $gray4;
+    }
+    a {
+      text-decoration: none;
+      color: $gray3;
+    }
+
+    &:last-child {
+      span {
+        background-color: $acian2;
+        color: white;
+        font-weight: 700;
+        border-color: $acian2;
+      }
+      a {
+        color: $gray1;
+      }
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .button-back {
+    width: 100%;
+    justify-content: space-between;
+    font-weight: 700;
+    color: $gray2;
+    font-size: 12px;
+  }
+
+  &__progress {
+    background: $acian2;
+    height: 6px;
+    width: calc(100% - 144px);
+    border-radius: 20px;
+  }
+}

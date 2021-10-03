@@ -1,14 +1,126 @@
 {
-  "posts": [
-    { "id": 1, "title": "Post 1" },
-    { "id": 2, "title": "Post 2" },
-    { "id": 3, "title": "Post 3" }
+  "cars": [
+    {
+      "documentType": "0",
+      "document": "12345678",
+      "plate": "ABC-123",
+      "brand": "Wolkswagen",
+      "year": "2019",
+      "model": "Golf",
+      "name": "Juan",
+      "email": "juan@example.com"
+    },
+    {
+      "documentType": "0",
+      "document": "87654321",
+      "plate": "ABC-456",
+      "brand": "Mazda",
+      "year": "2020",
+      "model": "cx3",
+      "name": "José",
+      "email": "jose@example.com"
+    },
+    {
+      "documentType": "1",
+      "document": "1234567890",
+      "plate": "123-ABC",
+      "brand": "Ford",
+      "year": "2010",
+      "model": "Mustang",
+      "name": "María",
+      "email": "maria@example.com"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 },
-    { "id": 2, "body": "some comment", "postId": 1 }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "coverage": [
+    {
+      "title": "PROTEGE A TU AUTO",
+      "options": [
+        {
+          "id": 0,
+          "title": "Llanta robada",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 1,
+          "title": "Choque y/o pasarte la luz roja",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 2,
+          "title": "Atropello en la vía Evitamiento",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    },
+    {
+      "title": "PROTEGE A LOS QUE TE RODEAN",
+      "options": [
+        {
+          "id": 3,
+          "title": "Llanta robada 2",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 4,
+          "title": "Choque y/o pasarte la luz roja 2",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 5,
+          "title": "Atropello en la vía Evitamiento 2",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    },
+    {
+      "title": "MEJORA TU PLAN",
+      "options": [
+        {
+          "id": 6,
+          "title": "Llanta robada 3",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 7,
+          "title": "Choque y/o pasarte la luz roja 3",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 8,
+          "title": "Atropello en la vía Evitamiento 3",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    }
+  ]
 }

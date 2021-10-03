@@ -1,0 +1,82 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.account {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100vw;
+  margin-left: -32px;
+  background: white;
+  padding-left: 32px;
+  padding-right: 32px;
+  @include breakpoint-up("md") {
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+    padding: 0;
+    padding-bottom: 43px;
+
+    border-bottom: 1px solid #E4E8F7;
+    justify-content: space-between;
+  }
+
+  &__info {
+    @include breakpoint-down('md') {
+      margin-top: 44px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      color: $gray1;
+      margin-bottom: 4px;
+    }
+    span {
+      color: $gray2;
+      font-size: 12px;
+    }
+  }
+
+  &__range {
+    display: flex;
+    align-items: center;
+  }
+
+  .divider {
+    height: 16px;
+    width: 1px;
+    background: #e4e8f7;
+    display: inline-flex;
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;
+    height: 56px;
+    border: 1px solid #c5cbe0;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 0 16px;
+    @include breakpoint-down('md') {
+      width: 100%;
+    }
+    button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      color: $acian2;
+      border: none;
+      font-size: 24px;
+      height: 100%;
+    }
+    span {
+      color: $gray1;
+      font-size: 16px;
+    }
+  }
+}

@@ -1,46 +1,92 @@
-# Getting Started with Create React App
+# Hacking Challenge 2021
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+El presente repositorio contiene el código fuente del Hacking Challenge Rimac. Aplicando las condiciones establecidas en el reto mediante el Figma.
 
-## Available Scripts
+Ingresa al siguiente enlace para ver el resultado de prueba: [https://fcontreras-hacking-challenge.netlify.app/](https://fcontreras-hacking-challenge.netlify.app/)
 
-In the project directory, you can run:
+## Datos de prueba
 
-### `npm start`
+```
+  Usuario 1:
+    - Tipo documento: DNI
+    - Documento: 12345678
+    - Placa: ABC-123
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  Usuario 2:
+    - Tipo documento: DNI
+    - Documento: 87654321
+    - Placa: ABC-456
+  
+  Usuario 3:
+    - Tipo documento: CE
+    - Documento: 1234567890
+    - Placa: 123-ABC
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tecnologías usadas
 
-### `npm run build`
+- React 17 ([create-react-app](http://create-react-app.dev/)) 
+- Typescript
+- Estilos: Sass (Scss)
+- State: (Context)
+- Navegación: [react-router-dom](https://reactrouter.com/web/guides/quick-start)
+- Formularios: [react-hook-form](https://react-hook-form.com/) / [yup](https://github.com/jquense/yup)
+- Peticiones Http: [Axios](https://github.com/axios/axios)
+- Backend Mock: https://my-json-server.typicode.com/ 
+  - [Archivo JSON](https://github.com/fcontreras2/hacking-challenge/blob/main/db.json)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Inicio del proyecto
 
-### `npm run eject`
+Luego de descarga el proyecto debe descarga las dependencias necesarias para que el proyecto funcione. Ejecutar en la consola el siguiente comando:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+` npm install`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Ejecutar el proyecto**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Luego de haber descargado las dependencias ejercutar lo siente:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+` npm start`
 
-## Learn More
+El proyecto se ejecutará en la ruta: `http://localhost:3000`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Organización de proyecto
+
+El proyecto está basado en la configuración de [Create React App](https://create-react-app.dev/). Sin embargo, se ha explicará la organizado de los archivos y carpetas:
+
+
+### Components
+
+Son los componentes de la aplicación que pueden ser reutilizados en las distintas vistas. Tambien los componentes que se encuentre en esta carpeta no son dependientes del negocio, lo que implica que puede ser reutilizado en otros proyectos.
+
+- Button
+- Form (Input, Error, Checkbox, Select)
+- Spinner
+- Switch
+
+### Pages
+La carpeta contiene las paginas del proyecto. En cada archivo contiene la lógica del negocio por vista
+
+- Home
+- LoadData
+- Congratulations
+
+### Provides
+
+Contendrá los distintos contextos de la aplicación. Para este proyecto solo se tiene el contexto `Order` el cual manejará el estado de los datos de la aplicación
+
+### Services
+
+Representa la capa de conexión con servicios externos mediante http. Actualmente solo se tiene el servicio `useFetch` que nos permitirá conectar con el `Backend Mock`. Ahora si el proyecto requeriría algún tipo de conexión con un servicio externo debe estar colocado en dicha carpeta.
+
+### Shared
+
+Contiene Componentes, Hooks o cualquier otro elemento que puede ser compartido las distintas vistas del proyecto actual. A diferencia los componentes de la carpeta `components`, los componentes acá implementados son compartidos en las distintas vistas del proyecto pero su lógica de negocio está atado al proyecto actual.
+
+  - *ListenerProvider*: Permite la actualización del localstorage mediante la modificación del Context Order.
+  - *RouteOutler*: Verificará si existe la información necesaria para poder ingresa a la vista.
+

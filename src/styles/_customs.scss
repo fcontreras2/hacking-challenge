@@ -1,0 +1,78 @@
+@import "breakpoints";
+
+.container {
+  width: 100%;
+  padding: 0px 32px;
+  @include breakpoint-up("xs") {
+  }
+  @include breakpoint-up("md") {
+    display: flex;
+    margin: auto;
+    width: 1120px;
+  }
+
+  &.--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.d-mobile {
+  @media (min-width: map-get($breakpoints, "md") + 1) {
+    display: none !important;
+  }
+}
+
+.d-desktop {
+  @media (max-width: map-get($breakpoints, "md")) {
+    display: none !important;
+  }
+}
+
+@for $i from 1 through 8 {
+  .mt-#{$i} {
+    margin-top: #{$i * 8}px;
+  }
+
+  .mr-#{$i} {
+    margin-right: #{$i * 8}px;
+  }
+
+  .ml-#{$i} {
+    margin-left: #{$i * 8}px;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: #{$i * 8}px;
+  }
+}
+
+.button-back {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: $gray3;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid $red;
+    border-radius: 100%;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+  }
+  img {
+    transform: rotate(90deg);
+  }
+
+  &.--gray {
+    button {
+      border-color: $gray5;
+    }
+    img {
+      transform: rotate(0);
+    }
+  }
+}

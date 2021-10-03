@@ -1,0 +1,121 @@
+@import "styles/variables";
+@import "styles/breakpoints";
+
+.wrapper-content {
+  @include breakpoint-up("md") {
+    background: linear-gradient(90deg, #f7f8fc 49%, rgba(255, 255, 255, 1) 50%);
+  }
+
+  @include breakpoint-down("md") {
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.banner-welcome {
+  @include breakpoint-up("md") {
+    position: relative;
+    min-height: calc(100vh);
+    width: $sidebar-w;
+    padding-top: $padding-top;
+    &::before {
+      content: "";
+      background-image: url("/images/welcome-bg.svg");
+      background-repeat: no-repeat;
+      background-position: -32px 20%;
+      background-size: contain;
+      position: absolute;
+      top: calc(96px + #{$padding-top}) ;
+      right: -128px;
+      width: 416px;
+      height: 448px;
+      z-index: 10;
+    }
+  }
+  @include breakpoint-down("md") {
+    min-height: 208px;
+    &::before {
+      content: "";
+      background-image: url("/images/welcome-bg-mobile.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 50% 50%;
+      position: absolute;
+      top: 64px;
+      left: 1px;
+      width: calc(100%);
+      min-height: 208px;
+      z-index: 10;
+    }
+  }
+}
+
+.content-welcome {
+  padding-top: $padding-top;
+  @include breakpoint-down("md") {
+    padding-bottom: 56px;
+  }
+
+  @include breakpoint-up("md") {
+    background-color: white;
+    height: 100%;
+    min-height: calc(100vh);
+    padding: $padding-top 224px;
+    padding-top: calc(96px + #{$padding-top}) ;
+    padding-right: 20px;
+  }
+  h5 {
+    font-size: 36px;
+    line-height: 48px;
+    font-weight: 400;
+    color: $gray1;
+    padding-right: 80px;
+    @include breakpoint-down("sm") {
+      padding-right: 0;
+      font-size: 28px;
+      line-height: 36px;
+      letter-spacing: -0.6px;
+    }
+    span {
+      color: $red;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 28px;
+    color: $gray2;
+    padding-right: 130px;
+    @include breakpoint-down("sm") {
+      padding-right: 0;
+    }
+    span {
+      color: $gray1;
+    }
+  }
+
+  button {
+    width: 255px;
+    @include breakpoint-down("sm") {
+      width: 100%;
+    }
+  }
+}
+
+.copyright-welcome {
+  background: white;
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  margin-left: -32px;
+  height: 75px;
+  border-top: 1px solid #e4e8f7;
+  color: $gray3;
+  font-weight: 300;
+  font-size: 14px;
+}
