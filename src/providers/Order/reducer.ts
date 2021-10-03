@@ -11,10 +11,7 @@ export interface OrderState {
   car?: Car;
   coverage?: Coverage;
   cart: {
-    priceBase: number; // Precio base
-    subTotal?: number; // Monto
     totalCoverage?: number; // Suma del input
-    total?: number; // Calculo final según condiciones (> 16000 / quitar cobertura exoneradas)
     coverageSelected: {
       [covegare:string]: toggleCoveragePayload
     },

@@ -9,7 +9,9 @@ export const Summary = () => {
   const history = useHistory();
   const { cart } = useContext<OrderState>(OrderDataContext);
   const [total, setTotal] = useState<number>();
+  const [loading, setLoading] = useState<boolean>(false);
 
+  // Calculo de valor final a pagar mensualmente
   const calculatePriceMouths = useCallback(() => {
     const nextTotal: number = Number(process.env.REACT_APP_BASE_AMOUNT);
     let totalCoverage: number = 0;
@@ -27,7 +29,6 @@ export const Summary = () => {
   }, [cart.coverageSelected, cart.totalCoverage]);
 
   useEffect(() => {
-    console.log("aaa")
     calculatePriceMouths();
   }, [calculatePriceMouths, cart]);
 
@@ -73,9 +74,15 @@ export const Summary = () => {
           </li>
         </ul>
         <Button
+          loading={loading}
           className="button --primary summary__button"
           onClick={() => {
-            history.push("/bienvenido");
+            if (!loading) {
+              setLoading(true);
+              setTimeout(() => {
+                history.push("/bienvenido");
+              }, 2000);
+            }
           }}
         >
           LO QUIERO
