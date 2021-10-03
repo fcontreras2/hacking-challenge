@@ -1,18 +1,13 @@
 import Button from "components/Button";
 import { OrderDataContext } from "providers/Order/provider";
 import { OrderState } from "providers/Order/reducer";
-import { Fragment, useContext, useEffect } from "react";
-import { useHistory } from "react-router";
+import { Fragment, useContext } from "react";
 import Header from "shared/Header";
 import "./styles.scss";
 
 const Congratulations = () => {
   const { car } = useContext<OrderState>(OrderDataContext);
-  const history = useHistory();
-  
-  useEffect(() => {
-    if (!car) history.push('/')
-  }, [history, car])
+
   return (
     <Fragment>
       <Header variant="white" />

@@ -4,8 +4,8 @@ import Home from "./Home";
 import LoadData from "./LoadData";
 
 const routes: RoutePage[] = [
-  { path: '/carga-informacion', component: LoadData },
-  { path: '/bienvenido', component: Congratulations },
+  { path: '/carga-informacion', component: LoadData, protected: true },
+  { path: '/bienvenido', component: Congratulations , protected: true},
   { path: '/', component: Home },
 ];
 

@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useContext, useEffect,  useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "shared/Header";
 import InputAccount from "./InputAccount";
 import Summary from "./Summary";
@@ -19,7 +19,6 @@ const LoadData = () => {
   const { fetch, loading } = useFetch({ loading: true });
   const { toggleCoverage } = useOrderActions()
   const [coverage, setCovergas] = useState<Tab<Coverage>[]>([]);
-  const history = useHistory();
 
   const [coverageSelected, setCoverageSelected] = useState<any>();
   const loadCoverages = useCallback(async () => {
@@ -53,10 +52,6 @@ const LoadData = () => {
       setCoverageSelected({})
     }
   }, [cart])
-
-  useEffect(() => {
-    if (!car) history.push('/')
-  }, [history, car])
 
   return (
     <Fragment>

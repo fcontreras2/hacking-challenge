@@ -1,13 +1,12 @@
-import React from 'react';
+import { OrderDataContext } from 'providers/Order/provider';
+import React, { useContext } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { RoutePage } from 'types/global';
-import { useCookies } from 'react-cookie';
 import ListenerProvider from './ListenerProvider';
 
 const RouterOutlet = (route: RoutePage) => {
 
-  const [cookies] = useCookies(['token']);
-
+  const { car } = useContext(OrderDataContext);
   const render = (props: any) => {
     
     const component = (
@@ -17,7 +16,7 @@ const RouterOutlet = (route: RoutePage) => {
       />
     );
 
-    if (route.protected && !cookies["token"]) {
+    if (route.protected && !car) {
       return <Redirect to={{ pathname: '/' }} />;
     } 
     
