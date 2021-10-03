@@ -1,49 +1,81 @@
-import Button from "components/Button";
+import { useHistory } from "react-router";
+import { Fragment, useState } from "react";
+import { Helmet } from "react-helmet";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import {
   FormError,
   FormGroup,
   FormInput,
   FormLabel,
 } from "components/Form/Input";
-import { Fragment } from "react";
-import { Helmet } from "react-helmet";
-import { useForm } from "react-hook-form";
+import Select from "components/Form/Select";
+import Button from "components/Button";
+import { FormCheckbox } from "components/Form/Checkbox";
 import Header from "shared/Header";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import useFetch from "services/useFetch";
+import useOrderActions from "providers/Order/actions";
+import { Car, DocumentType } from "types/insurance";
 
 import "./styles.scss";
-import Select from "components/Form/Select";
-import { FormCheckbox } from "components/Form/Checkbox";
-import { useHistory } from "react-router";
 
 const schema = yup
   .object({
+    documentType: yup.number().required("Campo requerido"),
     document: yup.string().required("Campo requerido"),
     cellphone: yup.string().required("Campo requerido"),
     plate: yup.string().required("Campo requerido"),
+    terms: yup.bool().oneOf([true], "Aceptar los términos y condiciones")
   })
   .required();
 
 const DOCUMENTS = [
-  { value: 0, label: "DNI" },
-  { value: 1, label: "CE" },
+  { value: DocumentType.DNI, label: "DNI" },
+  { value: DocumentType.CE, label: "CE" },
 ];
 
 const Home = () => {
   const history = useHistory();
+  const { setCar } = useOrderActions();
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const { fetch, loading } = useFetch(true);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({
+    defaultValues: {
+      documentType: 0,
+    },
     resolver: yupResolver(schema),
   });
 
+  const onSubmit = async ({
+    documentType,
+    document,
+    plate,
+  }: any) => {
+    if (!loading) {
+      setNotFound(false);
+      const response = await fetch<Car[]>({
+        url: "/cars",
+        method: "GET",
+        params: {
+          documentType,
+          document,
+          plate,
+        },
+      });
 
-  const onSubmit = (data: any) => {
-    history.push('/carga-informacion')
+      if (response.data.length > 0) {
+        setCar(response.data[0]);
+        history.push("/carga-informacion");
+      } else {
+        setNotFound(true);
+      }
+    }
   };
 
   return (
@@ -76,6 +108,9 @@ const Home = () => {
         <div className="form-home">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h6 className="form-home__title mb-3">Déjanos tus datos</h6>
+            {notFound && (
+              <div className="home-errors">¡Tu vehículo no fue encontrado, volver intentar!</div>
+            )}
 
             <FormGroup
               className={`form__group --select mb-3 ${
@@ -123,7 +158,8 @@ const Home = () => {
             </FormGroup>
 
             <div className="terms mb-3">
-              <FormCheckbox className="form__checkbox mr-1" />
+              <FormCheckbox {...register("terms")} className="form__checkbox mr-1" />
+              <div>
               <p>
                 Acepto la{" "}
                 <a
@@ -142,9 +178,13 @@ const Home = () => {
                   Términos y Condiciones.
                 </a>
               </p>
+              {errors.terms && <div className="home-errors mt-1">{errors.terms?.message}</div>}
+              </div>
             </div>
 
-            <Button type="submit">COTÍZALO</Button>
+            <Button loading={loading} type="submit">
+              COTÍZALO
+            </Button>
           </form>
         </div>
       </div>

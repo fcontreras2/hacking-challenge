@@ -1,10 +1,14 @@
+import Spinner from 'components/Spinner';
 import { ButtonHTMLAttributes } from 'react';
 import './styles.scss';
 
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  loading?: boolean
+}
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
-
-const Button = (props:Props) => <button {...props} />
+const Button = ({loading,  children, ...props}:Props) => <button {...props}>
+  {loading ? <Spinner /> : children}
+</button>
 
 
 Button.defaultProps = {

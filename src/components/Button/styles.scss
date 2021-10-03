@@ -1,6 +1,10 @@
 @import "styles/variables";
 
 .button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center ;
   border-radius: 8px;
   height: 56px;
   width: 100%;
@@ -13,10 +17,19 @@
     border: 2px solid $red;
     outline: none;
     color: white;
+    
+    .loader:after {
+      background: $red;
+    }
+
     &:hover {
       border: 2px solid $red;
       background-color: #dc1d2a;
+      .loader:after {
+        background: #dc1d2a;
+      }
     }
+   
   }
 }
 

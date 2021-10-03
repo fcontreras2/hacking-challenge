@@ -1,0 +1,106 @@
+{
+  "cars": [
+    {
+      "documentType": "0",
+      "document": "123456789",
+      "plate": "ABC-123",
+      "brand": "Wolkswagen",
+      "year": "2019",
+      "model": "Golf",
+      "name": "Juan",
+      "email": "juan@example.com"
+    }
+  ],
+  "coverage": [
+    {
+      "title": "PROTEGE A TU AUTO",
+      "options": [
+        {
+          "id": 0,
+          "title": "Llanta robada",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 1,
+          "title": "Choque y/o pasarte la luz roja",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 2,
+          "title": "Atropello en la vía Evitamiento",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    },
+    {
+      "title": "PROTEGE A LOS QUE TE RODEAN",
+      "options": [
+        {
+          "id": 3,
+          "title": "Llanta robada 2",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 4,
+          "title": "Choque y/o pasarte la luz roja 2",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 5,
+          "title": "Atropello en la vía Evitamiento 2",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    },
+    {
+      "title": "MEJORA TU PLAN",
+      "options": [
+        {
+          "id": 6,
+          "title": "Llanta robada 3",
+          "price": 15,
+          "exonerated": false,
+          "icon": "/images/icon-llanta.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+
+        {
+          "id": 7,
+          "title": "Choque y/o pasarte la luz roja 3",
+          "price": 20,
+          "exonerated": true,
+          "icon": "/images/icon-choque.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        },
+        {
+          "id": 8,
+          "title": "Atropello en la vía Evitamiento 3",
+          "price": 50,
+          "exonerated": false,
+          "icon": "/images/icon-atropello.svg",
+          "description": "He salido de casa a las cuatro menos cinco para ir a la academia de ingles de mi pueblo (Sant Cugat, al lado de Barcelona) con mi bici, na llego a la academia que está en el centro del pueblo en una plaza medio-grande y dejo donde siempre la bici atada con una pitón a un sitio de esos de poner las bicis y mucho más"
+        }
+      ]
+    }
+  ]
+}

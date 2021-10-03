@@ -1,12 +1,13 @@
 
-export type TabOption = {
+export type TabOption<T> = {
+  id: number;
   title: string;
   active: boolean;
   description: string;
   icon: string;
-}
+} & T
 
-export type Tab = {
+export type Tab<T> = {
   title: string;
-  options: TabOption[]
+  options: T[]
 }

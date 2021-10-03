@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { RoutePage } from 'types/global';
 import { useCookies } from 'react-cookie';
+import ListenerProvider from './ListenerProvider';
 
 const RouterOutlet = (route: RoutePage) => {
 
@@ -31,4 +32,4 @@ const RouterOutlet = (route: RoutePage) => {
   return <Route {...routeProps} />
 }
 
-export default RouterOutlet;
+export default ListenerProvider()(RouterOutlet);

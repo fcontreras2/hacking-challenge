@@ -1,16 +1,19 @@
 import Switch from "components/Switch";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Tab, TabOption } from "types/tabs";
 import "./styles.scss";
 
-type Props = {
-  title: string;
-  tabs: Tab[];
-  onChange: (tab: Tab) => void;
-};
-
-const Option = ({ title, description, icon }: TabOption) => {
+function Option<T>({
+  onChange,
+  ...props
+}: TabOption<T> & { onChange: (tabOption: TabOption<T> & any) => void }) {
   const [open, setOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLInputElement | null>(null);
+  const { title, description, icon, active } = props;
+
+  useEffect(() => {
+    if (ref.current) ref.current.checked = active;
+  }, [active, ref]);
 
   return (
     <div className="tab-option">
@@ -30,17 +33,32 @@ const Option = ({ title, description, icon }: TabOption) => {
 
         <div className="tab-option__title d-mobile">
           <span>{title}</span>
-          <Switch />
+          <Switch
+            ref={ref}
+            onClick={() => onChange(props)}
+            defaultChecked={Boolean(active)}
+          />
         </div>
         <div className="tab-option__add d-desktop">
-          <button className="button-icon">
-            <img src="/images/icon-plus.svg" alt="Icon"></img>
+          <button
+            className="button-icon"
+            onClick={() => {
+              onChange(props);
+              if (ref.current) ref.current.checked = Boolean(!active);
+            }}
+          >
+            <img
+              src={`/images/icon-${active ? "subtraction" : "plus"}.svg`}
+              alt="Icon"
+            ></img>
           </button>
-          <span>AGREGAR</span>
+          <span>{active ? "QUITAR" : "AGREGAR"}</span>
         </div>
+
         <div className={`tab-option__content ${open ? "--open" : ""}`}>
           <p>{description}</p>
         </div>
+
         <button
           className={`tab-option__more d-mobile ${open ? "--open" : ""}`}
           onClick={() => setOpen(!open)}
@@ -54,9 +72,18 @@ const Option = ({ title, description, icon }: TabOption) => {
       </div>
     </div>
   );
+}
+
+type Props<T> = {
+  title: string;
+  actives: {
+    [idOption: string]: any;
+  };
+  tabs: Tab<T>[];
+  onClickOption: (tab: TabOption<T> | any) => void;
 };
 
-const Tabs = ({ title, tabs, onChange }: Props) => {
+function Tabs<T>({ title, tabs, actives, onClickOption }: Props<T>) {
   const [active, setActive] = useState<number>(0);
 
   return (
@@ -74,12 +101,17 @@ const Tabs = ({ title, tabs, onChange }: Props) => {
         ))}
       </div>
       <div className="tabs__options">
-        {tabs[active].options.map((option) => (
-          <Option key={option.title} {...option} />
+        {tabs[active].options.map((option: any) => (
+          <Option
+            key={option.title}
+            active={Boolean(actives[`${option.id}`])}
+            onChange={onClickOption}
+            {...option}
+          />
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default Tabs;

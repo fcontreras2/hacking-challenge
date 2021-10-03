@@ -60,6 +60,7 @@ const Select = (props: Props) => {
           {props.options.map((e) => (
             <button
               className="form__option"
+              key={String(e  + '-key')}
               onClick={() => {
                 setCurrentSelected(e);
               }}

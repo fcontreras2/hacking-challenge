@@ -1,9 +1,13 @@
 import Button from "components/Button";
-import { Fragment } from "react";
+import { OrderDataContext } from "providers/Order/provider";
+import { OrderState } from "providers/Order/reducer";
+import { Fragment, useContext } from "react";
 import Header from "shared/Header";
 import "./styles.scss";
 
 const Congratulations = () => {
+  const { car } = useContext<OrderState>(OrderDataContext);
+
   return (
     <Fragment>
       <Header variant="white" />
@@ -20,7 +24,7 @@ const Congratulations = () => {
             <p className="mb-5">
               Enviaremos la confirmación de compra de tu Plan Vehícular Tracking a tu correo:
               <br/>
-              <span>joel.sanchez@gmail.com</span>
+              <span>{car?.email}</span>
             </p>
             <Button>CÓMO USAR MI SEGURO</Button>
           </div>
